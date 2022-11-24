@@ -82,18 +82,18 @@ public class ClearSkyeEntitlements extends AppPage {
 	}
 	
 	public void selectEnvironment() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 2));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables1, 2));
 		webDriverUtil.waitAWhile();
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setText(driver, getLastElementByClassName(Identity.profileType), webDriverUtil.getProperty("environment"));
+//		SeleniumUtils.setText(driver, getLastElementByClassName(Identity.profileType), webDriverUtil.getProperty("environment"));
 		webDriverUtil.waitAWhile();
-		webDriverUtil.waitAWhile();
+//		webDriverUtil.waitAWhile();
 		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 0));
 		webDriverUtil.waitAWhile();
 	}
 	
 	public void selectRequest() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 0));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables1, 0));
 		webDriverUtil.waitAWhile();
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.setText(driver, getLastElementByClassName(Identity.profileType), webDriverUtil.getProperty("entitlement_request"));
@@ -104,30 +104,30 @@ public class ClearSkyeEntitlements extends AppPage {
 	}
 	
 	public void selectSystemType() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 1));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables1, 1));
 		webDriverUtil.waitAWhile();
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setText(driver, getLastElementByClassName(Identity.profileType), webDriverUtil.getProperty("entitlement_system_type"));
-		webDriverUtil.waitAWhile();
+//		SeleniumUtils.setText(driver, getLastElementByClassName(Identity.profileType), webDriverUtil.getProperty("entitlement_system_type"));
+//		webDriverUtil.waitAWhile();
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 0));
 		webDriverUtil.waitAWhile();
 	}
 	
 	public void selectEntitlemenType() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 5));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables1, 5));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setText(driver, getLastElementByClassName(Identity.profileType), webDriverUtil.getProperty("entitlementType"));
+//		SeleniumUtils.setText(driver, getLastElementByClassName(Identity.profileType), webDriverUtil.getProperty("entitlementType"));
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 0));
 		webDriverUtil.waitAWhile();
 	}
 	
 	public void selectAccount() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 6));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables1, 6));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setText(driver, getLastElementByClassName(Identity.profileType), webDriverUtil.getProperty("firstName"));
-		webDriverUtil.waitAWhile();
+//		SeleniumUtils.setText(driver, getLastElementByClassName(Identity.profileType), webDriverUtil.getProperty("firstName"));
+//		webDriverUtil.waitAWhile();
 		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 0));
 		webDriverUtil.waitAWhile();
 	}
@@ -143,13 +143,40 @@ public class ClearSkyeEntitlements extends AppPage {
 		webDriverUtil.waitAWhile();
 	}
 	
+	public void switchToNewWindowAndFillOut(TestDataBean tdb) {
+		String parentWindow = driver.getWindowHandle();
+		Set<String> handles =  driver.getWindowHandles();
+	    for(String windowHandle  : handles) {
+	       if(!windowHandle.equals(parentWindow)) {
+	         driver.switchTo().window(windowHandle);
+	         SeleniumUtils.jsClick(driver,findElementByClassName(Identity.showMore, 0));
+	 		 webDriverUtil.waitAWhile();
+	 		createAnEntitlement(tdb);
+	        driver.switchTo().window(parentWindow); //cntrl to parent window
+	       }
+	    }
+	    webDriverUtil.waitAWhile();
+	    switchToIframe();
+	    webDriverUtil.waitAWhile();
+	}
+	public void identityrequest() {
+		SeleniumUtils.jsClick(driver, Account.filter);
+		webDriverUtil.waitAWhile();
+		SeleniumUtils.setTextAndEnter(driver, Account.filter, webDriverUtil.getProperty("requestscatalog"));
+		webDriverUtil.waitAWhile();
+		
+	}
+	
 	public void createAnEntitlement(TestDataBean tdb) {
-		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.serviceCatalogPortal, 2));
+		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.panel, 4));
+		webDriverUtil.waitAWhile();
+		
+//		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.serviceCatalogPortal, 2));
 		webDriverUtil.waitAWhile();
 	//	SeleniumUtils.jsClick(driver, Identity.cardView);
 	//	webDriverUtil.waitAWhile();
-		WebElement newRequest = driver.findElements(Identity.createNewRequest).get(0).findElements(Identity.linkTag).get(0);
-		SeleniumUtils.jsClick(driver, newRequest);
+	//	WebElement newRequest = driver.findElements(Identity.createNewRequest).get(0).findElements(Identity.linkTag).get(0);
+	//	SeleniumUtils.jsClick(driver, newRequest);
 		webDriverUtil.waitAWhile();
 		fillOutNewEntitlementForm();
 		clickOnSubmitEntitlement();

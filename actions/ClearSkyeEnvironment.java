@@ -134,7 +134,11 @@ public class ClearSkyeEnvironment extends AppPage {
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.setText(driver, Environment.domain, webDriverUtil.getProperty("defaultTest"));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.jsSelectElementByValue(driver, Environment.authMethod, webDriverUtil.getProperty("authMethod"));
+		SeleniumUtils.jsClick(driver, Environment.dataimport);
+		webDriverUtil.waitAWhile();
+		SeleniumUtils.setText(driver, Environment.dataimport, webDriverUtil.getProperty("defaultTest"));
+		webDriverUtil.waitAWhile();
+//		SeleniumUtils.jsSelectElementByValue(driver, Environment.authMethod, webDriverUtil.getProperty("authMethod"));
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.setText(driver, Environment.clientID, webDriverUtil.getProperty("defaultTest"));
 		webDriverUtil.waitAWhile();
@@ -176,13 +180,13 @@ public class ClearSkyeEnvironment extends AppPage {
 	private void publishEnvironment() {
 		SeleniumUtils.jsClick(driver, Environment.connectionSettings);
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.jsSelectElementByValue(driver, Environment.oathType, webDriverUtil.getProperty("oathType"));
+//		SeleniumUtils.jsSelectElementByValue(driver, Environment.oathType, webDriverUtil.getProperty("oathType"));
 		webDriverUtil.waitAWhile();
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.jsClick(driver, Environment.tokenUnlock);
+/*		SeleniumUtils.jsClick(driver, Environment.tokenUnlock);
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.setText(driver, Environment.tokenEndpoint, webDriverUtil.getProperty("defaultTest"));
-		webDriverUtil.waitAWhile();
+		webDriverUtil.waitAWhile();*/
 		SeleniumUtils.jsClick(driver, Environment.publish);
 		webDriverUtil.waitAWhile();
 	}

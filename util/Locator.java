@@ -693,6 +693,15 @@ public class Locator {
 	   	public static final By search = By.xpath("//input[@placeholder=\"Search\"]");
 	   	public static final By newAccount = By.className("catalog-text-wrap");
 	   	public static final By request = By.className("list_action");
+	   	public static final By showMore = By.className("m-t-xs");
+	   	public static final By requests = By.className("text-overflow-ellipsis");
+	   	public static final By createadditional = By.className("radio-element");
+	   	public static final By profiletype = By.className("select2-focusser");
+	   	public static final By panel = By.className("panel-body");
+
+	   	
+	   	
+	   	
     }
     
     public interface Account {
@@ -700,7 +709,7 @@ public class Locator {
     	public static final By selectDropdown = By.className("select2-result-label"); 
     	public static final By accountRequests = By.xpath("//span[text()='Account Requests']");
     	public static final By selectAllRequests = By.id("allcheck_x_cls_clear_skye_i_account_operations.sysapproval_approver.sysapproval");
-    	public static final By selectables = By.className("select2-choice"); 
+    	public static final By selectables = By.className("select2-chosen"); 
     	public static final By selectAction = By.xpath("//*[@id=\"x_cls_clear_skye_i_account_operations.sysapproval_approver.sysapproval_choice_actions\"]/select");
     	public static final By preferredAccountName = By.id("sp_formfield_unformattedName"); 
     	public static final By description = By.id("sp_formfield_description"); 
@@ -708,6 +717,8 @@ public class Locator {
     	public static final By entitleName = By.id("sp_formfield_name");
     	public static final By entitleDesc = By.id("sp_formfield_description");
     	public static final By filter = By.id("filter");
+    	public static final By selectables1 = By.className("select2-choice");
+    	public static final By reviewtype = By.id("sys_select.x_cls_clear_skye_i_review_configuration.review_template");
     }
     
     public interface Role {
@@ -974,6 +985,7 @@ public class Locator {
 		public static final By statuscheck = By.className("tab_caption_text");
 		public static final By selectAction = By.id("listv2_35ed31b71bee5d14a2c12023b24bcb4e_labelAction");
 		public static final By importbutton = By.className("formlink");
+		public static final By dataimport = By.id("x_cls_clear_skye_i_environment.service_now_credential_target");
 		
    }
    

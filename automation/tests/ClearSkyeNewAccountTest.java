@@ -64,13 +64,13 @@ public class ClearSkyeNewAccountTest extends AppTest {
 		user.login();
 		
 		Reporter.log("Navigating to the 'Homepage' tab.");
-		account.clickOnHomepageTab();
+		account.identityrequest();
 		
 		account.switchToIframe();
 		webDriverUtil.waitAWhile();
 		
 		Reporter.log("Validating the 'Create an Account' process.");
-		account.createAnAccount(tdb);
+		account.switchToNewWindowAndFillOut(tdb);
 		
 		webDriverUtil.waitAWhile();
 		account.switchToContent();

@@ -18,6 +18,8 @@ import com.clearskye.test.automation.AppPage;
 import com.clearskye.test.automation.WebDriverUtil;
 import com.clearskye.test.automation.domain.TestDataBean;
 import com.clearskye.test.util.SeleniumUtils;
+import com.clearskye.test.util.Locator.Account;
+import com.clearskye.test.util.Locator.Deletes;
 import com.clearskye.test.util.Locator.Elements;
 import com.clearskye.test.util.Locator.Profile;
 import com.clearskye.test.util.Locator.Templates;
@@ -138,8 +140,10 @@ public class ClearSkyeTemplates extends AppPage {
 	public void createANewReview(TestDataBean tdb) {
 		SeleniumUtils.jsClick(driver, Templates.createNew);
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.jsClick(driver, Templates.typeOfReview);
+		SeleniumUtils.jsSelectElementByIndex(driver, Account.reviewtype, 1);;
 		webDriverUtil.waitAWhile();
+
+		
 		fillOutReviewRequest();
 		SeleniumUtils.jsClick(driver, Templates.save);
 		webDriverUtil.waitAWhile();

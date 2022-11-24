@@ -64,29 +64,36 @@ public class ClearSkyeAccount extends AppPage {
 		SeleniumUtils.jsClick(driver, Identity.home);
 		webDriverUtil.waitAWhile();
 	}
+	public void identityrequest() {
+		SeleniumUtils.jsClick(driver, Account.filter);
+		webDriverUtil.waitAWhile();
+		SeleniumUtils.setTextAndEnter(driver, Account.filter, webDriverUtil.getProperty("requestscatalog"));
+		webDriverUtil.waitAWhile();
+		
+	}
 	
 	public void selectOwnersProfile() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 0));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables1, 0));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setText(driver, findElementByClassName(Identity.profileType, 3), webDriverUtil.getProperty("testUser"));
+//		SeleniumUtils.setText(driver, findElementByClassName(Identity.profileType, 3), webDriverUtil.getProperty("testUser"));
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 0));
 		webDriverUtil.waitAWhile();
 	}
 	
 	public void selectEnvironment() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 1));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables1, 1));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setText(driver, findElementByClassName(Identity.profileType, 3), webDriverUtil.getProperty("environment"));
+//		SeleniumUtils.setText(driver, findElementByClassName(Identity.profileType, 3), webDriverUtil.getProperty("environment"));
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 0));
 		webDriverUtil.waitAWhile();
 	}
 	
 	public void selectPreferredAccount() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 2));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables1, 2));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setText(driver, findElementByClassName(Identity.profileType, 3), webDriverUtil.getProperty("accountType"));
+//		SeleniumUtils.setText(driver, findElementByClassName(Identity.profileType, 3), webDriverUtil.getProperty("accountType"));
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 0));
 		webDriverUtil.waitAWhile();
@@ -150,12 +157,30 @@ public class ClearSkyeAccount extends AppPage {
 		webDriverUtil.waitAWhile();
 		webDriverUtil.waitAWhile();
 	}
+	public void switchToNewWindowAndFillOut(TestDataBean tdb) {
+		String parentWindow = driver.getWindowHandle();
+		Set<String> handles =  driver.getWindowHandles();
+	    for(String windowHandle  : handles) {
+	       if(!windowHandle.equals(parentWindow)) {
+	         driver.switchTo().window(windowHandle);
+	         SeleniumUtils.jsClick(driver,findElementByClassName(Identity.showMore, 0));
+	 		 webDriverUtil.waitAWhile();
+	 		createAnAccount(tdb);
+	        driver.switchTo().window(parentWindow); //cntrl to parent window
+	       }
+	    }
+	    webDriverUtil.waitAWhile();
+	    switchToIframe();
+	    webDriverUtil.waitAWhile();
+	}
 	
 	public void createAnAccount(TestDataBean tdb) {
-		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.serviceCatalogPortal, 2));
+		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.panel, 15));
+		webDriverUtil.waitAWhile();
+/*		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.serviceCatalogPortal, 2));
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.newAccount, 7));
-		webDriverUtil.waitAWhile();
+		webDriverUtil.waitAWhile();*/
 //		SeleniumUtils.jsClick(driver, Identity.cardView);
 //		webDriverUtil.waitAWhile();
 //		WebElement newRequest = driver.findElements(Identity.createNewRequest).get(6).findElements(Identity.linkTag).get(0);

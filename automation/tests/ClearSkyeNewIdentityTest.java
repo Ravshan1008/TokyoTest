@@ -71,7 +71,7 @@ public class ClearSkyeNewIdentityTest extends AppTest {
 		identity.identityrequest();
 		
 		Reporter.log("Validating the 'Create an Identity' process.");
-		identity.changeAnIdentity(tdb);
+		identity.switchToNewWindowAndFillOut(tdb);
 		
 //		Reporter.log("Validating the 'Create an Identity' process.");
 //		identity.createAnIdentity(tdb);

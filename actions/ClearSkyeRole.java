@@ -147,7 +147,7 @@ public class ClearSkyeRole extends AppPage {
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.setTextAndTab(driver, Role.environment, webDriverUtil.getProperty("environment"));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.jsSelectElementByValue(driver, Role.risk, webDriverUtil.getProperty("roleRisk"));
+//		SeleniumUtils.jsSelectElementByValue(driver, Role.risk, webDriverUtil.getProperty("roleRisk"));
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.setTextAndTab(driver, Role.profile, webDriverUtil.getProperty("watchList"));
 		webDriverUtil.waitAWhile();

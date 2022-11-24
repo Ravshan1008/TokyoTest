@@ -65,13 +65,13 @@ public class ClearSkyeNewEntitlementTest extends AppTest {
 		user.login();
 		
 		Reporter.log("Navigating to the 'Homepage' tab.");
-		entitlement.clickOnHomepageTab();
+		entitlement.identityrequest();
 		
 		entitlement.switchToIframe();
 		webDriverUtil.waitAWhile();
 		
 		Reporter.log("Validating the 'Create an Entitlement' process.");
-		entitlement.createAnEntitlement(tdb);
+		entitlement.switchToNewWindowAndFillOut(tdb);
 		
 		webDriverUtil.waitAWhile();
 		entitlement.switchToContent();

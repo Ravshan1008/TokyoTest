@@ -63,13 +63,13 @@ public class ClearSkyeChangeIdentityTest extends AppTest {
 		user.login();
 		
 		Reporter.log("Navigating to the 'Homepage' tab.");
-		identity.clickOnHomepageTab();
+		identity.identityrequest();
 		
 		identity.switchToIframe();
 		webDriverUtil.waitAWhile();
 		
 		Reporter.log("Validating the 'Change an Identity' process.");
-		identity.changeAnIdentity(tdb);
+		identity.switchToNewWindowAndFillOut(tdb);
 		
 		webDriverUtil.waitAWhile();
 		identity.switchToContent();

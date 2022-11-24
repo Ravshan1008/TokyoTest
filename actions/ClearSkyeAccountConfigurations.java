@@ -85,6 +85,7 @@ public class ClearSkyeAccountConfigurations extends AppPage {
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.setText(driver, findElementByClassName(Configurations.approvalUser, 4), webDriverUtil.getProperty("watchList"));
 		webDriverUtil.waitAWhile();
+		webDriverUtil.waitAWhile();
 		SeleniumUtils.click(driver, findElementByClassName(Role.selectUser, 0));
 		webDriverUtil.waitAWhile();
 	}

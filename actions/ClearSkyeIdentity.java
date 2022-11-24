@@ -80,6 +80,23 @@ public class ClearSkyeIdentity extends AppPage {
 		webDriverUtil.waitAWhile();
 	}
 	
+	public void switchToNewWindowAndFillOut(TestDataBean tdb) {
+		String parentWindow = driver.getWindowHandle();
+		Set<String> handles =  driver.getWindowHandles();
+	    for(String windowHandle  : handles) {
+	       if(!windowHandle.equals(parentWindow)) {
+	         driver.switchTo().window(windowHandle);
+	         SeleniumUtils.jsClick(driver,findElementByClassName(Identity.showMore, 0));
+	 		 webDriverUtil.waitAWhile();
+	 		changeAnIdentity(tdb);
+	        driver.switchTo().window(parentWindow); //cntrl to parent window
+	       }
+	    }
+	    webDriverUtil.waitAWhile();
+	    switchToIframe();
+	    webDriverUtil.waitAWhile();
+	}
+	
 	public void approveAnIdentity(TestDataBean tdb) {
 	//	clickOnSelectIdentity();
 		SeleniumUtils.jsSelectElementByIndex(driver, findElementByClassName(Identity.searchBy, 0), 0);
@@ -184,13 +201,13 @@ public class ClearSkyeIdentity extends AppPage {
 		SeleniumUtils.setText(driver, Identity.startDate, todayDate);
 		webDriverUtil.waitAWhile();
 		selectProfileType(index);
-		selectManagedBy(index);
+//		selectManagedBy(index);
 		SeleniumUtils.setText(driver, Identity.title, tdb.getTestName());
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.setText(driver, Identity.phoneNumber, tdb.getPhoneNumber());
 		webDriverUtil.waitAWhile();
-		selectDepartament(index);
-		selectLocation(index);
+//		selectDepartament(index);
+//		selectLocation(index);
 		SeleniumUtils.setText(driver, Identity.mobileNumber, tdb.getPhoneNumber());
 		webDriverUtil.waitAWhile();
 		clickOnSubmitIdentity();
@@ -220,40 +237,46 @@ public class ClearSkyeIdentity extends AppPage {
 	}
 	
 	public void selectIdentity() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 0));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables1, 0));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setText(driver, findElementByClassName(Identity.profileType, 7), webDriverUtil.getProperty("testUser"));
+//		SeleniumUtils.setText(driver, findElementByClassName(Identity.profileType, 7), webDriverUtil.getProperty("profileType"));
 		webDriverUtil.waitAWhile();
 		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 0));
 		webDriverUtil.waitAWhile();
 	}
 	
 	public void selectProfile() {
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 1));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectables, 2));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setText(driver, findElementByClassName(Identity.profileType, 7), webDriverUtil.getProperty("testUser"));
+//		SeleniumUtils.setText(driver, findElementByClassName(Identity.profiletype, 2), webDriverUtil.getProperty("testUser"));
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 0));
+		SeleniumUtils.click(driver, findElementByClassName(Account.selectDropdown, 1));
 		webDriverUtil.waitAWhile();
 	}
 	
 	public void identityrequest() {
 		SeleniumUtils.jsClick(driver, Account.filter);
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.setTextAndEnter(driver, Account.filter, webDriverUtil.getProperty("requestidentity"));
+		SeleniumUtils.setTextAndEnter(driver, Account.filter, webDriverUtil.getProperty("requestscatalog"));
 		webDriverUtil.waitAWhile();
 		
 	}
 	
 	public void changeAnIdentity(TestDataBean tdb) {
-		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.serviceCatalogPortal, 2));
+ 		webDriverUtil.waitAWhile();
+		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.requests, 45));
+		webDriverUtil.waitAWhile();
+//		SeleniumUtils.jsClick(driver, findElementByClassName(Identity.serviceCatalogPortal, 2));
 		webDriverUtil.waitAWhile();
 	//	SeleniumUtils.jsClick(driver, Identity.cardView);
 	//	webDriverUtil.waitAWhile();
-		WebElement newRequest = driver.findElements(Identity.createNewRequest).get(3).findElements(Identity.linkTag).get(0);
+		
+/*		WebElement newRequest = driver.findElements(Identity.createNewRequest).get(3).findElements(Identity.linkTag).get(0);
 		SeleniumUtils.jsClick(driver, newRequest);
 		webDriverUtil.waitAWhile();
-		SeleniumUtils.jsClick(driver, Identity.replace);
+		SeleniumUtils.jsClick(driver, Identity.replace);*/
+		
+		SeleniumUtils.jsClick(driver, findElementByClassName( Identity.createadditional, 0));
 		webDriverUtil.waitAWhile();
 		selectIdentity();
 		selectProfile();
